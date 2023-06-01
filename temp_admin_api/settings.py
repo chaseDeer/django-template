@@ -33,23 +33,26 @@ PUB_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_ROOT = os.path.join(PUB_DIR, "media")
 
-
 ALLOWED_HOSTS = ["*"]
 
-# 添加 CORS 配置
-# 1. 设置白名单
+# Add the CORS configuration
+# 1. whitelist
 CORS_ORIGIN_WHITELIST = (
     'http://127.0.0.1:8080',
     'http://localhost:8080',
     'http://localhost:8081',
     'http://localhost:8082',
     'http://192.168.31.67:8081',
-    'http://192.168.10.50:8080',  # 凡是出现在白名单中的域名，都可以访问后端接口
+    'http://192.168.10.50:8080',  # All domains in the whitelist can access the back-end interface
 )
 # 2. 设置 CORS Cookie
-CORS_ALLOW_CREDENTIALS = True  # 指明在跨域访问中，后端是否支持对cookie的操作
+CORS_ALLOW_CREDENTIALS = True  # Specifies whether the back end supports operations on cookies during cross-domain access
 
 # Application definition
+#
+# SWAGGER_SETTINGS = {
+#     "DEFAULT_GENERATOR_CLASS": "rest_framework.schemas.generators.BaseSchemaGenerator"
+# }
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -59,7 +62,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'adminapp.apps.AdminappConfig',
-    'corsheaders'
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -108,13 +111,13 @@ WSGI_APPLICATION = 'temp_admin_api.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'temp_admin',
-        'USER': 'temp_admin',
+        'NAME': 'childlearn',
+        'USER': 'childlearn',
         'PASSWORD': '123456',
         'HOST': 'localhost',
         'PORT': ''
     },
-    'OPTIONS': {'charset': 'utf8mb4'}, #支持emoji
+    'OPTIONS': {'charset': 'utf8mb4'},  # emoji support
 }
 
 
@@ -159,14 +162,15 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+# redis
 CACHES = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://127.0.0.1:6379/",
         "OPTIONS": {
             "CLIENT_CLASS": "django_redis.client.DefaultClient",
-            "SOCKET_CONNECT_TIMEOUT": 5,  # 连接redis超时时间，单位为秒
-            "SOCKET_TIMEOUT": 5,  # redis读写操作超时时间，单位为秒
+            "SOCKET_CONNECT_TIMEOUT": 5,  # Timeout duration for connecting to redis, in seconds
+            "SOCKET_TIMEOUT": 5,  # redis Read/write timeout duration, expressed in seconds
         }
     }
 }
