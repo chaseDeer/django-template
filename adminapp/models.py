@@ -20,26 +20,3 @@ class Users(models.Model):
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)
 
-
-class Images(models.Model):
-    image_name = models.CharField(max_length=256)
-    image_url = models.CharField(max_length=256)
-    image_type = models.CharField(max_length=256)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
-
-
-class Records(models.Model):
-    user_id = models.CharField(max_length=128)
-    images_id = models.CharField(max_length=512)
-    level = models.CharField(max_length=256)
-    is_finshed = models.IntegerField(default=0)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
-
-
-class Lunbo(models.Model):
-    lunbo_url = models.CharField(max_length=512)
-    is_start = models.IntegerField(default=0)
-    create_time = models.DateTimeField(auto_now_add=True)
-    update_time = models.DateTimeField(auto_now=True)
